@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header" aria-label="Cabeçalho fixo">
+        <div class="header-content">
+            <h1 tabindex="0">Gestão Escolar</h1>
+            <form class="search-form" role="search" aria-label="Buscar aluno">
+                <input type="search" id="searchAluno" name="searchAluno" placeholder="Buscar aluno..." aria-label="Buscar aluno" />
+                <button type="submit" class="button" aria-label="Buscar">🔍</button>
+            </form>
+        </div>
+    </header>
+    <main class="main-layout" aria-label="Área principal">
+        <div class="columns">
+            <!-- Coluna Esquerda -->
+            <aside class="sidebar" aria-label="Filtros e estatísticas">
+                <section class="filters" aria-label="Filtros">
+                    <h2 tabindex="0">Filtros</h2>
+                    <label for="turmaFiltro">Turma:</label>
+                    <select id="turmaFiltro" name="turmaFiltro" aria-label="Filtrar por turma">
+                        <option value="">Todas</option>
+                        <!-- opções dinâmicas -->
+                    </select>
+                    <label for="statusFiltro">Status:</label>
+                    <select id="statusFiltro" name="statusFiltro" aria-label="Filtrar por status">
+                        <option value="">Todos</option>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                </section>
+                <section class="stats" aria-label="Estatísticas rápidas">
+                    <h2 tabindex="0">Estatísticas</h2>
+                    <ul>
+                        <li>Total de alunos: <span id="totalAlunos">0</span></li>
+                        <li>Ativos: <span id="alunosAtivos">0</span></li>
+                        <li>Por turma:</li>
+                        <ul id="statsPorTurma">
+                            <!-- estatísticas dinâmicas -->
+                        </ul>
+                    </ul>
+                </section>
+                <button class="button" id="btnNovoAluno" aria-label="Novo Aluno" tabindex="0">Novo Aluno</button>
+                <button class="button" id="btnNovaMatricula" aria-label="Nova Matrícula" tabindex="0">Nova Matrícula</button>
+            </aside>
+            <!-- Coluna Direita -->
+            <section class="alunos-listagem" aria-label="Listagem de alunos" tabindex="0">
+                <h2>Alunos</h2>
+                <div id="alunosContainer" class="alunos-container" aria-live="polite">
+                    <!-- listagem dinâmica dos alunos -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal Novo Aluno -->
+    <div id="modalNovoAluno" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalNovoAlunoTitulo" tabindex="-1" hidden>
+        <div class="modal-content">
+            <h2 id="modalNovoAlunoTitulo">Novo Aluno</h2>
+            <form id="formNovoAluno" autocomplete="off">
+                <label for="nomeAluno">Nome:</label>
+                <input type="text" id="nomeAluno" name="nomeAluno" required aria-required="true" />
+
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required aria-required="true" />
+
+                <label for="emailAluno">Email:</label>
+                <input type="email" id="emailAluno" name="emailAluno" required aria-required="true" />
+
+                <label for="statusAluno">Status:</label>
+                <select id="statusAluno" name="statusAluno" required aria-required="true">
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">Inativo</option>
+                </select>
+
+                <label for="turmaAluno">Turma:</label>
+                <select id="turmaAluno" name="turmaAluno" required aria-required="true">
+                    <!-- opções dinâmicas -->
+                </select>
+
+                <div class="modal-actions">
+                    <button type="submit" class="button" aria-label="Salvar aluno">Salvar</button>
+                    <button type="button" class="button" id="fecharModalNovoAluno" aria-label="Fechar modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Nova Matrícula -->
+    <div id="modalNovaMatricula" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalNovaMatriculaTitulo" tabindex="-1" hidden>
+        <div class="modal-content">
+            <h2 id="modalNovaMatriculaTitulo">Nova Matrícula</h2>
+            <form id="formNovaMatricula" autocomplete="off">
+                <label for="matriculaAluno">Aluno:</label>
+                <select id="matriculaAluno" name="matriculaAluno" required aria-required="true">
+                    <!-- opções dinâmicas -->
+                </select>
+
+                <label for="matriculaTurma">Turma:</label>
+                <select id="matriculaTurma" name="matriculaTurma" required aria-required="true">
+                    <!-- opções dinâmicas -->
+                </select>
+
+                <div class="modal-actions">
+                    <button type="submit" class="button" aria-label="Salvar matrícula">Salvar</button>
+                    <button type="button" class="button" id="fecharModalNovaMatricula" aria-label="Fechar modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- link modal CSS if you have it in frontend/styles -->
+    <link rel="stylesheet" href="styles/modal.css">
+
+    <!-- Link your frontend JS (relative to this index.html) -->
+    <script src="main.js" defer></script>
+</body>
+</html>
